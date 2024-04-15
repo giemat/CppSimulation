@@ -5,10 +5,22 @@
 #ifndef PO_P1_WORLD_H
 #define PO_P1_WORLD_H
 
-
+#include <vector>
+#include "Organism.h"
+class Organism;
 class World {
+private:
+    std::vector<Organism> organisms;
+    int Width;
+    int Height;
 
+public:
+    World(int Height, int Width);
+    World(int Height, int Width, std::vector<Organism>& organisms);
+    ~World();
+    void executeTurn();
+    void drawWorld();
+    void addOrganism(const Organism& organism);
 };
 
-
-#endif //PO_P1_WORLD_H
+#endif // PO_P1_WORLD_H
