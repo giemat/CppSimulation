@@ -4,8 +4,8 @@
 
 #include "Fox.h"
 
-Fox::Fox(int _strength, int _initiative, Point& point, World* _world_ptr)
-        : Animal(_strength, _initiative, point, _world_ptr, 'F') {}
+Fox::Fox(Point& point, World* _world_ptr)
+        : Animal(3, 7, point, _world_ptr, 'F') {}
 
 void Fox::action() {
     // Implement action for Fox
@@ -16,5 +16,9 @@ void Fox::collision(Organism* organism) {
 }
 
 void Fox::draw() {
-    // Implement draw for Fox
+    symbol = 'F';
+    Point temp = getPosition();
+    int x = temp.getX();
+    int y = temp.getY();
+    mvaddch(y,x,symbol);
 }

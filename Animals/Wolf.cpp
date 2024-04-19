@@ -4,8 +4,8 @@
 
 #include "Wolf.h"
 
-Wolf::Wolf(int _strength, int _initiative, Point& point, World* _world_ptr)
-        : Animal(_strength, _initiative, point, _world_ptr, 'W') {}
+Wolf::Wolf(Point& point, World* _world_ptr)
+        : Animal(9, 5, point, _world_ptr, 'W') {}
 
 void Wolf::action() {
     // Implement action for Wolf
@@ -18,6 +18,9 @@ void Wolf::collision(Organism* organism) {
 }
 
 void Wolf::draw() {
-    // Implement draw for Wolf
-    // For example, you may draw a specific symbol for the Wolf
+    symbol = 'W';
+    Point temp = getPosition();
+    int x = temp.getX();
+    int y = temp.getY();
+    mvaddch(y,x,symbol);
 }

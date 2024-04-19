@@ -4,8 +4,8 @@
 
 #include "Antelope.h"
 
-Antelope::Antelope(int _strength, int _initiative, Point& point, World* _world_ptr)
-        : Animal(_strength, _initiative, point, _world_ptr, 'A') {}
+Antelope::Antelope(Point& point, World* _world_ptr)
+        : Animal(4, 4, point, _world_ptr, 'A') {}
 
 void Antelope::action() {
     // Implement action for Antelope
@@ -16,5 +16,8 @@ void Antelope::collision(Organism* organism) {
 }
 
 void Antelope::draw() {
-    // Implement draw for Antelope
-}
+    symbol = 'A';
+    Point temp = getPosition();
+    int x = temp.getX();
+    int y = temp.getY();
+    mvaddch(y,x,symbol);}

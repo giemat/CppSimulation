@@ -7,9 +7,9 @@
 
 #include "../Animal.h"
 
-class Trutle : public Animal {
+class Turtle : public Animal {
 public:
-    Trutle(int _strength, int _initiative, Point& point, World* _world_ptr);
+    Turtle(Point& point, World* _world_ptr);
     void action() override;
     void collision(Organism* organism) override;
     void draw() override;

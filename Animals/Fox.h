@@ -10,7 +10,7 @@
 
 class Fox : public Animal {
 public:
-    Fox(int _strength, int _initiative, Point& point, World* _world_ptr);
+    Fox(Point& point, World* _world_ptr);
     void action() override;
     void collision(Organism* organism) override;
     void draw() override;

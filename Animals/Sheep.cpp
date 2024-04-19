@@ -4,8 +4,8 @@
 
 #include "Sheep.h"
 
-Sheep::Sheep(int _strength, int _initiative, Point& point, World* _world_ptr)
-        : Animal(_strength, _initiative, point, _world_ptr, 'S') {}
+Sheep::Sheep(Point& point, World* _world_ptr)
+        : Animal(4, 4, point, _world_ptr, 'S') {}
 
 void Sheep::action() {
     // Implement action for Sheep
@@ -16,5 +16,9 @@ void Sheep::collision(Organism* organism) {
 }
 
 void Sheep::draw() {
-    // Implement draw for Sheep
+    symbol = 'S';
+    Point temp = getPosition();
+    int x = temp.getX();
+    int y = temp.getY();
+    mvaddch(y,x,symbol);
 }

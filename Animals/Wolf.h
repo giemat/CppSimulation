@@ -9,10 +9,10 @@
 
 class Wolf : public Animal {
 public:
-    Wolf(int _strength, int _initiative, Point& point, World* _world_ptr);
-    virtual void action() override;
-    virtual void collision(Organism* organism) override;
-    virtual void draw() override;
+    Wolf(Point& point, World* _world_ptr);
+    void action() override;
+    void collision(Organism* organism) override;
+    void draw() override;
 };
 
 #endif //PO_P1_WOLF_H

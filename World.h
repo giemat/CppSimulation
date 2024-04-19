@@ -23,6 +23,7 @@ public:
     void drawWorld();
     void addOrganism(const Organism& organism);
     int getAge();
+    void fight(int one, int two);
 };
 
 #endif // PO_P1_WORLD_H

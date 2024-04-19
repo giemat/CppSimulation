@@ -9,7 +9,7 @@
 
 class Sheep : public Animal {
 public:
-    Sheep(int _strength, int _initiative, Point& point, World* _world_ptr);
+    Sheep(Point& point, World* _world_ptr);
     void action() override;
     void collision(Organism* organism) override;
     void draw() override;

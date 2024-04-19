@@ -8,6 +8,7 @@
 // Forward declaration to break circular dependency
 #include "World.h"
 #include "Point.h"
+#include <ncurses.h>
 class World;
 
 class Organism {
@@ -28,16 +29,16 @@ public:
     virtual void action();
     virtual void collision(Organism* organism);
     virtual void draw();
+    static bool checkCollision(const Organism& one, const Organism& two);
+    char getSymbol() const;
     Organism& operator=(const Organism& other) {
-        if (this != &other) { // Check for self-assignment
-            // Copy data from 'other' to 'this'
+        if (this != &other) {
             this->strength = other.strength;
             this->initiative = other.initiative;
             this->position.setX(other.position.getX());
             this->position.setY(other.position.getY());
-            // You might need to handle the world pointer as needed
         }
-        return *this; // Return reference to the left-hand side object
+        return *this;
     }
 };
 

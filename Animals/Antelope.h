@@ -10,7 +10,7 @@
 
 class Antelope : public Animal {
 public:
-    Antelope(int _strength, int _initiative, Point& point, World* _world_ptr);
+    Antelope(Point& point, World* _world_ptr);
     void action() override;
     void collision(Organism* organism) override;
     void draw() override;

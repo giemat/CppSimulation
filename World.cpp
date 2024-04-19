@@ -26,6 +26,17 @@ int World::getAge(){
     return worldAge;
 }
 
+void World::fight(int one, int two) {
+    if (one >= 0 && one < organisms.size() && two >= 0 && two < organisms.size()) {
+        if (organisms[one].getStrength() > organisms[two].getStrength()) {
+            organisms.erase(organisms.begin() + two);
+        }else{
+            organisms.erase(organisms.begin() + one);
+
+        }
+    }
+}
+
 World::~World() {
     organisms.clear();
 }

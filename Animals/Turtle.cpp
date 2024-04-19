@@ -4,20 +4,23 @@
 
 #include "Turtle.h"
 
-Trutle::Trutle(int _strength, int _initiative, Point& point, World* _world_ptr)
-        : Animal(_strength, _initiative, point, _world_ptr, 'T') {}
+Turtle::Turtle(Point& point, World* _world_ptr)
+        : Animal(2, 1, point, _world_ptr, 'T') {}
 
-void Trutle::action() {
+void Turtle::action() {
     // Implement action for Wolf
     // For example, you may move the wolf around differently than other animals
 }
 
-void Trutle::collision(Organism* organism) {
+void Turtle::collision(Organism* organism) {
     // Implement collision for Wolf
     // Check if the collided organism is also a Wolf or other specific logic
 }
 
-void Trutle::draw() {
-    // Implement draw for Wolf
-    // For example, you may draw a specific symbol for the Wolf
+void Turtle::draw() {
+    symbol = 'T';
+    Point temp = getPosition();
+    int x = temp.getX();
+    int y = temp.getY();
+    mvaddch(y,x,symbol);
 }
