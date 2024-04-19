@@ -13,7 +13,8 @@ private:
     std::vector<Organism> organisms;
     int Width;
     int Height;
-
+protected:
+    int worldAge;
 public:
     World(int Height, int Width);
     World(int Height, int Width, std::vector<Organism>& organisms);
@@ -21,6 +22,7 @@ public:
     void executeTurn();
     void drawWorld();
     void addOrganism(const Organism& organism);
+    int getAge();
 };
 
 #endif // PO_P1_WORLD_H

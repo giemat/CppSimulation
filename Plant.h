@@ -5,10 +5,14 @@
 #ifndef PO_P1_PLANT_H
 #define PO_P1_PLANT_H
 
+#include "Organism.h"
 
-class Plant {
-
+class Plant : public Organism {
+public:
+    Plant(int _strength, int _initiative, Point& point, World* _world_ptr);
+    void action() override;
+    void collision(Organism* organism) override;
+    void draw() override;
 };
-
 
 #endif //PO_P1_PLANT_H

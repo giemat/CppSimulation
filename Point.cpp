@@ -22,3 +22,7 @@ void Point::setX(int par) {
 
 Point::Point(int x, int y): x(x), y(y) {}
 
+bool Point::operator==(const Point &other) const {
+    return (x == other.getX() && y == other.getY());
+}
+

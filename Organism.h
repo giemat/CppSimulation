@@ -14,20 +14,20 @@ class Organism {
 private:
     int strength;
     int initiative;
+
+protected:
     Point position;
     World* world_ptr;
-
+    char symbol;
 public:
-    Organism(int _strength, int _initiative, Point& point, World *_world_ptr);
+    Organism(int _strength, int _initiative, Point& point, World *_world_ptr, char symbol);
     ~Organism() = default;
     int getStrength() const;
     int getInitiative() const;
     Point getPosition() const;
-    void changePosition(int x, int y);
     virtual void action();
     virtual void collision(Organism* organism);
     virtual void draw();
-    void movePosition();
     Organism& operator=(const Organism& other) {
         if (this != &other) { // Check for self-assignment
             // Copy data from 'other' to 'this'
