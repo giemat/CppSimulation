@@ -12,8 +12,7 @@ class Fox : public Animal {
 public:
     Fox(Point& point, World* _world_ptr);
     void action() override;
-    void collision(Organism* organism) override;
-    void draw() override;
+    void collision(Organism* organism);
 };
 
 #endif //PO_P1_FOX_H

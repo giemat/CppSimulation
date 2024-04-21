@@ -16,11 +16,3 @@ void Turtle::collision(Organism* organism) {
     // Implement collision for Wolf
     // Check if the collided organism is also a Wolf or other specific logic
 }
-
-void Turtle::draw() {
-    symbol = 'T';
-    Point temp = getPosition();
-    int x = temp.getX();
-    int y = temp.getY();
-    mvaddch(y,x,symbol);
-}

@@ -14,11 +14,3 @@ void Fox::action() {
 void Fox::collision(Organism* organism) {
     // Implement collision for Fox
 }
-
-void Fox::draw() {
-    symbol = 'F';
-    Point temp = getPosition();
-    int x = temp.getX();
-    int y = temp.getY();
-    mvaddch(y,x,symbol);
-}

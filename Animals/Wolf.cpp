@@ -17,10 +17,3 @@ void Wolf::collision(Organism* organism) {
     // Check if the collided organism is also a Wolf or other specific logic
 }
 
-void Wolf::draw() {
-    symbol = 'W';
-    Point temp = getPosition();
-    int x = temp.getX();
-    int y = temp.getY();
-    mvaddch(y,x,symbol);
-}

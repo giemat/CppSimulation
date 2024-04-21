@@ -17,6 +17,7 @@ private:
     int initiative;
 
 protected:
+    int age;
     Point position;
     World* world_ptr;
     char symbol;
@@ -27,10 +28,12 @@ public:
     int getInitiative() const;
     Point getPosition() const;
     virtual void action();
-    virtual void collision(Organism* organism);
+    //virtual void collision(Organism& organism);
     virtual void draw();
     static bool checkCollision(const Organism& one, const Organism& two);
     char getSymbol() const;
+    void Age();
+    int getAge() const;
     Organism& operator=(const Organism& other) {
         if (this != &other) {
             this->strength = other.strength;

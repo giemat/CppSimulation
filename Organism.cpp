@@ -5,7 +5,7 @@
 
 #include "Organism.h"
 Organism::Organism(int _strength, int _initiative, Point& point,World *_world_ptr, char symbol)
-    :strength(_strength), initiative(_initiative), world_ptr(_world_ptr), position(point), symbol(symbol){}
+    :strength(_strength), initiative(_initiative), world_ptr(_world_ptr), position(point), symbol(symbol), age(0){}
 
 int Organism::getStrength() const {
     return strength;
@@ -34,7 +34,17 @@ bool Organism::checkCollision(const Organism& one, const Organism& two){
 
 void Organism::action() {}
 
-void Organism::collision(Organism *organism) {}
+//void Organism::collision(Organism &organism) {}
 
-void Organism::draw() {}
+void Organism::draw() {
+    mvaddch(position.getY(), position.getX(), getSymbol());
+}
+
+void Organism::Age() {
+    age++;
+}
+
+int Organism::getAge() const {
+    return age;
+}
 

@@ -24,6 +24,10 @@ public:
     void addOrganism(const Organism& organism);
     int getAge();
     void fight(int one, int two);
+    void setWidth(int width);
+    void setHeight(int height);
+    void setDimensions();
+    void checkCollisions();
 };
 
 #endif // PO_P1_WORLD_H

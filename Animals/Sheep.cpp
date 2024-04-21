@@ -15,10 +15,3 @@ void Sheep::collision(Organism* organism) {
     // Implement collision for Sheep
 }
 
-void Sheep::draw() {
-    symbol = 'S';
-    Point temp = getPosition();
-    int x = temp.getX();
-    int y = temp.getY();
-    mvaddch(y,x,symbol);
-}

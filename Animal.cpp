@@ -7,21 +7,19 @@
 #include <ctime>
 #include <cstdlib>
 #include <ncurses.h>
-Animal::Animal(int _strength, int _initiative, Point& point, World* _world_ptr, char symbol)
-        : Organism(_strength, _initiative, point, _world_ptr, symbol), age(0) {}
+Animal::Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol)
+        : Organism(_strength, _initiative, point, _world_ptr, symbol){}
 
 void Animal::action() {
     // Implement action for Animal
 }
 
-void Animal::collision(Organism* organism) {
-    // Implement collision for Animal
-}
+//void Animal::collision(Organism* organism) {}
 
-void Animal::draw() {
-    Point position = getPosition();
-    mvaddch(position.getY(), position.getX(), getSymbol());
-}
+//void Animal::draw() {
+//    Point position = getPosition();
+//    mvaddch(position.getY(), position.getX(), getSymbol());
+//}
 void Animal::changePosition(int x, int y) {
     this->position.setX(x);
     this->position.setY(y);
@@ -51,6 +49,3 @@ char Animal::getSymbol() const {
     return symbol;
 }
 
-void Animal::Age() {
- age++;
-}

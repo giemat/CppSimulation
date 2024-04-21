@@ -5,6 +5,11 @@
 #include <ncurses.h>
 #include "Organism.h"
 #include "World.h"
+#include "Animals/Wolf.h"
+#include "Animals/Sheep.h"
+#include "Animals/Antelope.h"
+#include "Animals/Turtle.h"
+#include "Animals/Fox.h"
 
 using namespace std;
 
@@ -12,15 +17,14 @@ int main(){
     World world(20,20);
     World* world1 = &world;
     vector<Organism> org;
-    Point mid = *new Point(5,5);
-    Organism Wolf(5,3,mid,world1);
-    org.push_back(Wolf);
-
-    cout << org[0].getPosition().getY() << endl;
-    cout << org[0].getPosition().getX() << endl;
-
-    org[0].movePosition();
-    cout << org[0].getPosition().getY() << endl;
-    cout << org[0].getPosition().getX() << endl;
+    Point mid(5,5), next(10,10), w(11,3), test(1,12), one(3,3);
+    world.setDimensions();
+    world.addOrganism(Sheep(mid, world1));
+    world.addOrganism(Wolf(next, world1));
+    world.addOrganism(Antelope(w, world1));
+    world.addOrganism(Fox(test, world1));
+    world.addOrganism(Turtle(one, world1));
+    world.drawWorld();
+    getch();
     return 0;
 }

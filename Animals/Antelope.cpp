@@ -15,9 +15,3 @@ void Antelope::collision(Organism* organism) {
     // Implement collision for Antelope
 }
 
-void Antelope::draw() {
-    symbol = 'A';
-    Point temp = getPosition();
-    int x = temp.getX();
-    int y = temp.getY();
-    mvaddch(y,x,symbol);}
