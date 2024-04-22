@@ -10,22 +10,20 @@
 class Organism;
 class World {
 private:
-    std::vector<Organism> organisms;
+    std::vector<Organism*> organisms;
     int Width;
     int Height;
 protected:
     int worldAge;
 public:
     World(int Height, int Width);
-    World(int Height, int Width, std::vector<Organism>& organisms);
+    World(int Height, int Width, std::vector<Organism*>&& organisms);
     ~World();
     void executeTurn();
     void drawWorld();
-    void addOrganism(const Organism& organism);
+    void addOrganism(Organism* organism);
+    void deleteOrganism(Organism* organism);
     int getAge();
-    void fight(int one, int two);
-    void setWidth(int width);
-    void setHeight(int height);
     void setDimensions();
     void checkCollisions();
 };

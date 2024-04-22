@@ -23,18 +23,9 @@ char Organism::getSymbol() const{
     return symbol;
 }
 
-bool Organism::checkCollision(const Organism& one, const Organism& two){
-    if(one.getPosition() == two.getPosition()){
-        return true;
-    }else{
-        return false;
-    }
-}
-
-
 void Organism::action() {}
 
-//void Organism::collision(Organism &organism) {}
+void Organism::collision(Organism* organism) {}
 
 void Organism::draw() {
     mvaddch(position.getY(), position.getX(), getSymbol());

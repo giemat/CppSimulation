@@ -3,18 +3,15 @@
 //
 
 #include "Plant.h"
+#include <iostream>
 
 Plant::Plant(int _strength, Point& point, World* _world_ptr, char symbol)
         : Organism(_strength, 0, point, _world_ptr, symbol) {}
 
 void Plant::action() {
-    // Implement action for Plant
+    std::cout << "Action plant" << std::endl;
 }
 
-//void Plant::collision(Organism* organism) {
-    // Implement collision for Plant
-//}
-
-//void Plant::draw() {
-//    // Implement draw for Plant
-//}
+void Plant::collision(Organism* organism) {
+        std::cout << "Collision plant" << std::endl;
+}

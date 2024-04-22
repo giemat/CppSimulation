@@ -28,9 +28,9 @@ public:
     int getInitiative() const;
     Point getPosition() const;
     virtual void action();
-    //virtual void collision(Organism& organism);
+    virtual void collision(Organism* organism);
     virtual void draw();
-    static bool checkCollision(const Organism& one, const Organism& two);
+    //static bool checkCollision(const Organism& one, const Organism& two);
     char getSymbol() const;
     void Age();
     int getAge() const;
@@ -42,6 +42,9 @@ public:
             this->position.setY(other.position.getY());
         }
         return *this;
+    }
+    bool operator==(const Organism &other) const {
+        return (symbol == other.getSymbol() && strength == other.getStrength() && position == other.getPosition());
     }
 };
 

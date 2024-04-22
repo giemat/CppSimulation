@@ -11,41 +11,64 @@ Animal::Animal(int _strength, int _initiative, Point point, World* _world_ptr, c
         : Organism(_strength, _initiative, point, _world_ptr, symbol){}
 
 void Animal::action() {
-    // Implement action for Animal
+    choose();
+    movePosition();
 }
 
-//void Animal::collision(Organism* organism) {}
-
-//void Animal::draw() {
-//    Point position = getPosition();
-//    mvaddch(position.getY(), position.getX(), getSymbol());
-//}
-void Animal::changePosition(int x, int y) {
-    this->position.setX(x);
-    this->position.setY(y);
-
-}
-void Animal::movePosition() {
-    srand(time(nullptr));
-    int choice = rand() % 2;
-    int change = (rand() % 2 == 0) ? -1 : 1;
-    if(choice == 0){
-        position.setX(position.getX()+change);
-    }else{
-        position.setY(position.getX()+change);
-
+void Animal::collision(Organism* organism) {
+    if(symbol == organism->getSymbol()){
+        reproduction(organism);
+    }else if(organism->getSymbol() == 'T'){
+        if(getStrength() < 5){
+            direction = (direction + 2) % 4;
+            movePosition();
+        }else{
+            fight(organism);
+        }
     }
 }
 
-void Animal::reproduction(const Organism& parent) {
+int Animal::choose(){
+    srand(time(nullptr));
+    direction = rand()%4;
+    return direction;
+}
+
+// void Animal::changePosition(int x, int y) {
+//     this->position.setX(x);
+//     this->position.setY(y);
+
+// }
+void Animal::movePosition() {
+    switch (direction) {
+        case 0:
+            position.setY(position.getY()-delta);
+            break;
+        case 2:
+            position.setY(position.getY()+delta);
+            break;
+        case 1:
+            position.setX(position.getX()-delta);
+            break;
+        case 3:
+            position.setX(position.getX()+delta);
+            break;
+    }
+}
+
+void Animal::reproduction(Organism* parent) {
     Animal* child = new Animal(getStrength(), getInitiative(), getPosition(), this->world_ptr, this->getSymbol());
     do {
         child->movePosition();
-    } while (!(child->getPosition() == parent.getPosition() || child->getPosition() == this->getPosition()));
-    world_ptr->addOrganism(*child);
+    } while (!(child->getPosition() == parent->getPosition() || child->getPosition() == this->getPosition()));
+    world_ptr->addOrganism(child);
 }
 
-char Animal::getSymbol() const {
-    return symbol;
+void Animal::fight(Organism* other){
+    if(other->getStrength()>=getStrength()){
+        world_ptr->deleteOrganism(this);
+    } else{
+        world_ptr->deleteOrganism(other);
+    }
 }
 
