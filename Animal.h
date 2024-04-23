@@ -9,17 +9,17 @@
 
 class Animal : public Organism {
 protected:
-    int delta;
+    int reach;
     int direction;
+    Point lastPosition;
 public:
-    Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol, int delta);
-    void setDelta();
+    Animal(int _strength, int _initiative, Point point, World* _world_ptr, int reach);
     virtual void action() override;
     virtual void collision(Organism* organism) override;
-    void Age();
-    void movePosition();
-    void reproduction(Organism* parent);
+    void movePosition() override;
+    virtual void reproduction(Organism* parent);
     void fight(Organism* parent);
-    int choose();
+
+    Point choosePosition();
 };
 #endif //PO_P1_ANIMAL_H

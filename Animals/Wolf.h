@@ -10,6 +10,8 @@
 class Wolf : public Animal {
 public:
     Wolf( Point& point, World* _world_ptr);
+    char getSymbol() const override;
+    void reproduction(Organism *parent) override;
 };
 
 

@@ -5,9 +5,13 @@
 #include "Guarana.h"
 
 Guarana::Guarana(Point& point, World* _world_ptr)
-        : Plant(0, point, _world_ptr, 'G') {}
+        : Plant(0, point, _world_ptr) {}
 
 void Guarana::action() {
     // Implement action for Guarana
     // For example, Guarana might produce seeds or grow
+}
+
+char Guarana::getSymbol() const {
+    return 'G';
 }

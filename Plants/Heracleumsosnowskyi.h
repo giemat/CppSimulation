@@ -12,6 +12,7 @@ class HeracleumSosnowskyi : public Plant {
 public:
     HeracleumSosnowskyi(Point& point, World* _world_ptr);
     virtual void action() override;
+    char getSymbol() const override;
 };
 
 

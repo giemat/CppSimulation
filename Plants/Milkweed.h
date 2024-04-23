@@ -10,6 +10,7 @@ class Milkweed : public Plant {
 public:
     Milkweed(Point& point, World* _world_ptr);
     virtual void action() override;
+    char getSymbol() const override;
 };
 
 

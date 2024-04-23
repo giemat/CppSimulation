@@ -7,10 +7,13 @@
 
 #include <vector>
 #include "Organism.h"
+#include "Point.h"
 class Organism;
 class World {
 protected:
     std::vector<Organism*> organisms;
+    std::vector<Organism*> children;
+
     int Width;
     int Height;
     int worldAge;
@@ -20,14 +23,22 @@ public:
     ~World();
     void executeTurn();
     void drawWorld();
-    int getHeight();
-    int getWidth();
     void sort();
-    void addOrganism(Organism* organism);
-    void deleteOrganism(Organism* organism);
+
     int getAge();
     void setDimensions();
+
+    Organism* getOrg(int x, int y);
+    int getHeight();
+    int getWidth();
+
     void checkCollisions();
+    bool empty(Point point);
+    bool empty(int x, int y);
+
+    void addChild(Organism *organism);
+    void addOrganism(Organism* organism);
+    void deleteOrganism(Organism* organism);
 };
 
 

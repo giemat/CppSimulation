@@ -21,19 +21,34 @@ using namespace std;
 int main(){
     World world(20,20);
     World* world1 = &world;
-    Point mid(5,5), next(6,5), w(5,6), test(1,12), one(3,3);
-    Sheep* temp = new Sheep(mid, world1);
-    world.setDimensions();
-    world.addOrganism(temp);
-    temp = new Sheep(next,world1);
-    world.addOrganism(temp);
-    Wolf* temp1 = new Wolf(w,world1);
-    world.addOrganism(temp1);
+    Point mid(5,5), next(6,5), w(5,6), test(1,12), one(3,3),mid1(15,15), next1(16,15), w1(15,10), test1(11,11), one1(13,31);
+    Sheep* sheepObject = new Sheep(mid, world1);
+    Wolf* wolfObject = new Wolf(next, world1);
+    Fox* foxObject = new Fox(mid1, world1);
+    Antelope* antelopeObject = new Antelope(w, world1);
+    Turtle* turtleObject = new Turtle(w1, world1);
+    Nightshade* nightshadeObject = new Nightshade(next1, world1);
+    Milkweed* milkweedObject = new Milkweed(test, world1);
+    Grass* grassObject = new Grass(test1, world1);
+    Guarana *guaranaObject = new Guarana(one, world1);
+    HeracleumSosnowskyi* heracleumSosnowskyi = new HeracleumSosnowskyi(one1, world1);
+    world.addOrganism(grassObject);
+    world.addOrganism(guaranaObject);
+    world.addOrganism(heracleumSosnowskyi);
+    world.addOrganism(milkweedObject);
+    world.addOrganism(nightshadeObject);
+    world.addOrganism(turtleObject);
+    world.addOrganism(wolfObject);
+    world.addOrganism(sheepObject);
+    world.addOrganism(antelopeObject);
+    world.addOrganism(foxObject);
+
+
     int x = 0;
     while(x == 0){
         world.executeTurn();
-        scanw("%d", &x);
-        //std::cin >> x;
+        //scanw("%d", &x);
+        std::cin >> x;
     }
     return 0;
 }

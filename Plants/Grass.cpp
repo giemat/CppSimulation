@@ -5,10 +5,14 @@
 #include "Grass.h"
 
 Grass::Grass(Point& point, World* _world_ptr)
-        : Plant(0, point, _world_ptr, 'G') {}
+        : Plant(0, point, _world_ptr) {}
 
 void Grass::action() {
     // Implement action for Grass
+}
+
+char Grass::getSymbol() const {
+    return 'g';
 }
 
 //void Grass::collision(Organism* organism) {

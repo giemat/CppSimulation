@@ -11,6 +11,7 @@ class Guarana : public Plant {
 public:
     Guarana(Point& point, World* _world_ptr);
     virtual void action() override;
+    char getSymbol() const override;
 };
 
 #endif //PO_P1_GUARANA_H

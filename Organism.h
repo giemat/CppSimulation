@@ -19,18 +19,29 @@ protected:
     Point position;
     World* world_ptr;
     char symbol;
+    bool alive;
 public:
-    Organism(int _strength, int _initiative, Point& point, World *_world_ptr, char symbol);
+    Organism(int _strength, int _initiative, Point& point, World *_world_ptr);
     ~Organism() = default;
-    int getStrength() const;
-    int getInitiative() const;
-    Point getPosition() const;
     virtual void action();
     virtual void collision(Organism* organism);
     virtual void draw();
+    virtual void movePosition();
     //static bool checkCollision(const Organism& one, const Organism& two);
-    char getSymbol() const;
+
+    void Age();
+
+    //get+set
+    virtual char getSymbol() const;
     int getAge() const;
+    int getStrength() const;
+    int getInitiative() const;
+    Point getPosition() const;
+    bool getAlive() const;
+    int getX() const;
+    int getY() const;
+
+
     Organism& operator=(const Organism& other) {
         if (this != &other) {
             this->strength = other.strength;

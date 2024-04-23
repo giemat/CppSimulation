@@ -10,7 +10,9 @@
 class Sheep : public Animal {
 public:
     Sheep(Point& point, World* _world_ptr);
+    char getSymbol() const override;
 
+    void reproduction(Organism *parent) override;
 };
 
 

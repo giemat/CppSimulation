@@ -12,6 +12,8 @@ public:
     Turtle(Point& point, World* _world_ptr);
     void action() override;
     void collision(Organism* organism);// override;
+    char getSymbol() const override;
+    void reproduction(Organism *parent) override;
 };
 
 #endif //PO_P1_TURTLE_H

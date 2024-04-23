@@ -6,35 +6,25 @@
 #include "World.h"
 #include <ctime>
 #include <cstdlib>
-Animal::Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol, int delta)
-        : Organism(_strength, _initiative, point, _world_ptr, symbol), delta(delta){}
+#include <iostream>
+
+Animal::Animal(int _strength, int _initiative, Point point, World* _world_ptr, int reach)
+        : Organism(_strength, _initiative, point, _world_ptr), lastPosition(0,0), reach(reach){
+        }
 
 void Animal::action() {
     Age();
-    setDelta();
-    choose();
     movePosition();
 }
 
-void Animal::Age(){
-    age++;
-}
-
-void Animal::setDelta(){
-    if(getSymbol() == 'A'){
-        delta == 2;
-    }else{
-        delta == 1;
-    }
-}
-
 void Animal::collision(Organism* organism) {
-    if(symbol == organism->getSymbol()){
-        reproduction(organism);
+    if(getSymbol() == organism->getSymbol()){
+        if(getAge() > 3 && organism->getAge() > 3){
+            reproduction(organism);
+        }
     }else if(organism->getSymbol() == 'T'){
         if(getStrength() < 5){
-            direction = (direction + 2) % 4;
-            movePosition();
+            position = lastPosition;
         }else{
             fight(organism);
         }
@@ -43,44 +33,98 @@ void Animal::collision(Organism* organism) {
     }
 }
 
-int Animal::choose(){
+Point Animal::choosePosition(){
+    Point temp(position);
     srand(time(nullptr));
     direction = rand()%4;
-    return direction;
+    switch (direction) {
+        case 0:
+            if (temp.getY() > 2){
+                temp.setY(temp.getY()-reach);
+            } else{
+                temp.setY(temp.getY()+reach);
+            }
+            break;
+        case 2:
+            if (temp.getY() < world_ptr->getHeight()-2){
+
+                temp.setY(temp.getY()+reach);
+            } else{
+                temp.setY(temp.getY()-reach);
+            }
+            break;
+        case 1:
+            if (temp.getX() > 2){
+                temp.setX(temp.getX()-reach);
+            } else{
+                temp.setX(temp.getX()+reach);
+
+            }
+            break;
+        case 3:
+            if (temp.getX() < world_ptr->getWidth()-2){
+                temp.setX(temp.getX()+reach);
+            } else{
+                temp.setX(temp.getX()-reach);
+
+            }
+            break;
+    }
+    return temp;
 }
 
 void Animal::movePosition() {
-    switch (direction) {
-        case 0:
-            position.setY(position.getY()-delta);
-            break;
-        case 2:
-            position.setY(position.getY()+delta);
-            break;
-        case 1:
-            position.setX(position.getX()-delta);
-            break;
-        case 3:
-            position.setX(position.getX()+delta);
-            break;
+    Point temp(choosePosition());
+    if(getSymbol() == 'F'){
+        Organism* org = world_ptr->getOrg(temp.getX(), temp.getY());
+        if(!world_ptr->empty(temp)){
+            while(org->getStrength()>getStrength()){
+                temp=choosePosition();
+            }
+        }
+        position = temp;
+    }else{
+        position = temp;
     }
 }
 
 void Animal::reproduction(Organism* parent) {
-    Animal* child = new Animal(getStrength(), getInitiative(), getPosition(), this->world_ptr, this->getSymbol(), this->delta);
-    do {
-        child->choose();
-        child->movePosition();
-    } while (!(child->getPosition() == parent->getPosition() || child->getPosition() == this->getPosition()));
-    world_ptr->addOrganism(child);
+    std::cout << "New" << getSymbol() << " on:" << getX() << " " << getY() << std::endl;
 }
 
 void Animal::fight(Organism* other){
-    if(other->getStrength()>=getStrength()){
-        world_ptr->deleteOrganism(this);
-    } else{
-        world_ptr->deleteOrganism(other);
+    if(getSymbol() == 'A' || other->getSymbol() == 'A'){
+        srand(time(nullptr));
+        int num = rand()%2;
+        if(num == 0){
+            if(other->getStrength()>getStrength()){
+                std::cout << getSymbol() << " dies on: " << getX() << " " << getY() << std::endl;
+                world_ptr->deleteOrganism(this);
+            } else if(other->getStrength()<getStrength()){
+                std::cout << other->getSymbol() << " dies on: " << other->getX() << " " << other->getY() << std::endl;
+                world_ptr->deleteOrganism(other);
+            }
+        }else{
+            if (getSymbol() == 'A'){
+                this->movePosition();
+                std::cout << getSymbol() << " Ucieka " << std::endl;
+
+            } else{
+                other->movePosition();
+                std::cout << other->getSymbol() << " Ucieka " << std::endl;
+
+            }
+        }
+    }else{
+        if(other->getStrength()>getStrength()){
+            std::cout << getSymbol() << " dies on: " << getX() << " " << getY() << std::endl;
+            world_ptr->deleteOrganism(this);
+        } else if(other->getStrength()<getStrength()){
+            std::cout << other->getSymbol() << " dies on: " << other->getX() << " " << other->getY() << std::endl;
+            world_ptr->deleteOrganism(other);
+        }
     }
+
 }
 
 
