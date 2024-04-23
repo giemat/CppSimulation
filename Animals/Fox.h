@@ -5,7 +5,6 @@
 #ifndef PO_P1_FOX_H
 #define PO_P1_FOX_H
 
-
 #include "../Animal.h"
 
 class Fox : public Animal {
@@ -14,5 +13,6 @@ public:
     void action() override;
     void collision(Organism* organism);
 };
+
 
 #endif //PO_P1_FOX_H

@@ -21,15 +21,19 @@ using namespace std;
 int main(){
     World world(20,20);
     World* world1 = &world;
-    Point mid(5,5), next(10,10), w(11,3), test(1,12), one(3,3);
-    Organism* temp = new Sheep(mid, world1);
+    Point mid(5,5), next(6,5), w(5,6), test(1,12), one(3,3);
+    Sheep* temp = new Sheep(mid, world1);
     world.setDimensions();
     world.addOrganism(temp);
-    world.drawWorld();
-    getch();
-    world.executeTurn();
-    getch();
-    world.drawWorld();
-    getch();
+    temp = new Sheep(next,world1);
+    world.addOrganism(temp);
+    Wolf* temp1 = new Wolf(w,world1);
+    world.addOrganism(temp1);
+    int x = 0;
+    while(x == 0){
+        world.executeTurn();
+        scanw("%d", &x);
+        //std::cin >> x;
+    }
     return 0;
 }

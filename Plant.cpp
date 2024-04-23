@@ -13,5 +13,5 @@ void Plant::action() {
 }
 
 void Plant::collision(Organism* organism) {
-        std::cout << "Collision plant" << std::endl;
+    std::cout << "Collision plant" << std::endl;
 }

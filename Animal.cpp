@@ -6,13 +6,26 @@
 #include "World.h"
 #include <ctime>
 #include <cstdlib>
-#include <ncurses.h>
-Animal::Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol)
-        : Organism(_strength, _initiative, point, _world_ptr, symbol){}
+Animal::Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol, int delta)
+        : Organism(_strength, _initiative, point, _world_ptr, symbol), delta(delta){}
 
 void Animal::action() {
+    Age();
+    setDelta();
     choose();
     movePosition();
+}
+
+void Animal::Age(){
+    age++;
+}
+
+void Animal::setDelta(){
+    if(getSymbol() == 'A'){
+        delta == 2;
+    }else{
+        delta == 1;
+    }
 }
 
 void Animal::collision(Organism* organism) {
@@ -25,6 +38,8 @@ void Animal::collision(Organism* organism) {
         }else{
             fight(organism);
         }
+    }else{
+        fight(organism);
     }
 }
 
@@ -34,11 +49,6 @@ int Animal::choose(){
     return direction;
 }
 
-// void Animal::changePosition(int x, int y) {
-//     this->position.setX(x);
-//     this->position.setY(y);
-
-// }
 void Animal::movePosition() {
     switch (direction) {
         case 0:
@@ -57,8 +67,9 @@ void Animal::movePosition() {
 }
 
 void Animal::reproduction(Organism* parent) {
-    Animal* child = new Animal(getStrength(), getInitiative(), getPosition(), this->world_ptr, this->getSymbol());
+    Animal* child = new Animal(getStrength(), getInitiative(), getPosition(), this->world_ptr, this->getSymbol(), this->delta);
     do {
+        child->choose();
         child->movePosition();
     } while (!(child->getPosition() == parent->getPosition() || child->getPosition() == this->getPosition()));
     world_ptr->addOrganism(child);
@@ -71,4 +82,5 @@ void Animal::fight(Organism* other){
         world_ptr->deleteOrganism(other);
     }
 }
+
 

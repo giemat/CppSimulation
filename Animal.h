@@ -12,12 +12,12 @@ protected:
     int delta;
     int direction;
 public:
-    Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol);
-    void action() override;
-    void collision(Organism* organism) override;
-    //void draw() override;
+    Animal(int _strength, int _initiative, Point point, World* _world_ptr, char symbol, int delta);
+    void setDelta();
+    virtual void action() override;
+    virtual void collision(Organism* organism) override;
+    void Age();
     void movePosition();
-    //void changePosition(int x, int y);
     void reproduction(Organism* parent);
     void fight(Organism* parent);
     int choose();

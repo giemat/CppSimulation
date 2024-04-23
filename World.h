@@ -9,11 +9,10 @@
 #include "Organism.h"
 class Organism;
 class World {
-private:
+protected:
     std::vector<Organism*> organisms;
     int Width;
     int Height;
-protected:
     int worldAge;
 public:
     World(int Height, int Width);
@@ -21,11 +20,15 @@ public:
     ~World();
     void executeTurn();
     void drawWorld();
+    int getHeight();
+    int getWidth();
+    void sort();
     void addOrganism(Organism* organism);
     void deleteOrganism(Organism* organism);
     int getAge();
     void setDimensions();
     void checkCollisions();
 };
+
 
 #endif // PO_P1_WORLD_H

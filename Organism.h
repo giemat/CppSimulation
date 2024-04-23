@@ -12,11 +12,9 @@
 class World;
 
 class Organism {
-private:
+protected:
     int strength;
     int initiative;
-
-protected:
     int age;
     Point position;
     World* world_ptr;
@@ -32,7 +30,6 @@ public:
     virtual void draw();
     //static bool checkCollision(const Organism& one, const Organism& two);
     char getSymbol() const;
-    void Age();
     int getAge() const;
     Organism& operator=(const Organism& other) {
         if (this != &other) {

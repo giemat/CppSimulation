@@ -5,7 +5,7 @@
 #include "Turtle.h"
 
 Turtle::Turtle(Point& point, World* _world_ptr)
-        : Animal(2, 1, point, _world_ptr, 'T') {}
+        : Animal(2, 1, point, _world_ptr, 'T', 1) {}
 
 void Turtle::action() {
     // Implement action for Wolf

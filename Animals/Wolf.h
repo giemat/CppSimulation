@@ -10,8 +10,7 @@
 class Wolf : public Animal {
 public:
     Wolf( Point& point, World* _world_ptr);
-    void action() override;
-    void collision(Organism* organism);
 };
+
 
 #endif //PO_P1_WOLF_H

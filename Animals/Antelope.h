@@ -4,8 +4,6 @@
 
 #ifndef PO_P1_ANTELOPE_H
 #define PO_P1_ANTELOPE_H
-
-
 #include "../Animal.h"
 
 class Antelope : public Animal {
