@@ -6,6 +6,7 @@
 #define PO_P1_WORLD_H
 
 #include <vector>
+#include <string>
 #include "Organism.h"
 #include "Point.h"
 class Organism;
@@ -13,7 +14,7 @@ class World {
 protected:
     std::vector<Organism*> organisms;
     std::vector<Organism*> children;
-
+    std::vector<std::string> information;
     int Width;
     int Height;
     int worldAge;
@@ -35,10 +36,14 @@ public:
     void checkCollisions();
     bool empty(Point point);
     bool empty(int x, int y);
+    bool isOrganism(Organism* organism);
 
     void addChild(Organism *organism);
     void addOrganism(Organism* organism);
     void deleteOrganism(Organism* organism);
+    void printInfo();
+    void addInfo(const std::string& info);
+    Point randomPoint();
 };
 
 

@@ -6,8 +6,16 @@
 #define PO_P1_HUMAN_H
 
 
-class Human {
+#include "Animal.h"
 
+class Human : public Animal {
+public:
+    char getSymbol() const override;
+    void action() override;
+    void reproduction(Organism *parent) override;
+    void specialAbility();
+    std::string toString() const override;
+    Human(Point point1, World *worldPtr);
 };
 
 

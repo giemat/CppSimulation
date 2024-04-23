@@ -2,6 +2,7 @@
 // Created by matgiedr on 4/15/24.
 //
 
+#include <iostream>
 #include "Point.h"
 
 int Point::getY() const {
@@ -26,3 +27,8 @@ bool Point::operator==(const Point &other) const {
     return (x == other.getX() && y == other.getY());
 }
 
+std::string Point::pointString(){
+    std::string msg;
+    msg = "X: "+std::to_string(getX())+", Y: "+std::to_string(getY());
+    return msg;
+}

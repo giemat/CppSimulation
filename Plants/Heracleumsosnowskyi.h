@@ -13,6 +13,8 @@ public:
     HeracleumSosnowskyi(Point& point, World* _world_ptr);
     virtual void action() override;
     char getSymbol() const override;
+    std::string toString() const override;
+
 };
 
 

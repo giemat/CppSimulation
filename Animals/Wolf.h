@@ -12,6 +12,8 @@ public:
     Wolf( Point& point, World* _world_ptr);
     char getSymbol() const override;
     void reproduction(Organism *parent) override;
+    std::string toString() const override;
+
 };
 
 

@@ -52,3 +52,17 @@ void Organism::movePosition() {
 
 }
 
+void Organism::setAlive() {
+    alive = false;
+}
+
+bool Organism::run() {
+    return false;
+}
+
+void Organism::addStrenth() {
+    strength += 3;
+}
+
+
+

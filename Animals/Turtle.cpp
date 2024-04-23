@@ -19,9 +19,18 @@ void Turtle::action() {
     }
 }
 
-void Turtle::collision(Organism* organism) {
-    // Implement collision for Wolf
-    // Check if the collided organism is also a Wolf or other specific logic
+
+void Turtle::collision(Organism* organism){
+    std::string msg;
+    if(organism->getSymbol() == 'T'){
+        reproduction(organism);
+    }
+    else if(organism->getStrength()<5){
+        msg = toString()+" deflects "+organism->toString()+" at "+position.pointString();
+        world_ptr->addInfo(msg);
+    } else{
+        Animal::collision(organism);
+    }
 }
 
 char Turtle::getSymbol() const {
@@ -35,11 +44,17 @@ void Turtle::reproduction(Organism *parent) {
                 Point temp(getX() + i, getY() + j);
                 Turtle *child = new Turtle(temp, this->world_ptr);
                 world_ptr->addChild(child);
-            } else {
-                //no space
-                std::cout << "No space for child" << std::endl;
+                std::string msg = "New "+toString()+"at position "+position.pointString();
+                world_ptr->addInfo(msg);
+            }
+            else{
+                world_ptr->addInfo("No space for child");
             }
         }
     }
 
+}
+
+std::string Turtle::toString() const {
+    return "Turtle";
 }

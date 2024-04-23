@@ -12,7 +12,9 @@ public:
     void action() override;
     void collision(Organism* organism);
     char getSymbol() const override;
+    bool run() override;
     void reproduction(Organism *parent) override;
+    std::string toString() const override;
 };
 
 #endif //PO_P1_ANTELOPE_H

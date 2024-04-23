@@ -27,6 +27,8 @@ public:
     virtual void collision(Organism* organism);
     virtual void draw();
     virtual void movePosition();
+    virtual std::string toString() const = 0;
+    virtual bool run();
     //static bool checkCollision(const Organism& one, const Organism& two);
 
     void Age();
@@ -38,6 +40,8 @@ public:
     int getInitiative() const;
     Point getPosition() const;
     bool getAlive() const;
+    void setAlive();
+    void addStrenth();
     int getX() const;
     int getY() const;
 

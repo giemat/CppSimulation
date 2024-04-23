@@ -27,12 +27,17 @@ void Fox::reproduction(Organism *parent) {
                 Point temp(getX()+i,getY()+j);
                 Fox* child = new Fox(temp, this->world_ptr);
                 world_ptr->addChild(child);
+                std::string msg = "New "+toString()+"at position "+position.pointString();
+                world_ptr->addInfo(msg);
             }
             else{
-                //no space
-                std::cout << "No space for child" << std::endl;
+                world_ptr->addInfo("No space for child");
             }
         }
     }
+}
+
+std::string Fox::toString() const {
+    return "Fox";
 }
 

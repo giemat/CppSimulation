@@ -22,14 +22,13 @@ void Animal::collision(Organism* organism) {
         if(getAge() > 3 && organism->getAge() > 3){
             reproduction(organism);
         }
-    }else if(organism->getSymbol() == 'T'){
-        if(getStrength() < 5){
-            position = lastPosition;
-        }else{
-            fight(organism);
-        }
     }else{
-        fight(organism);
+        if(!organism->run()){
+            fight(organism);
+        }else{
+            std::string msg = organism->toString()+" run away from "+toString();
+            world_ptr->addInfo(msg);
+        }
     }
 }
 
@@ -93,38 +92,21 @@ void Animal::reproduction(Organism* parent) {
 }
 
 void Animal::fight(Organism* other){
-    if(getSymbol() == 'A' || other->getSymbol() == 'A'){
-        srand(time(nullptr));
-        int num = rand()%2;
-        if(num == 0){
-            if(other->getStrength()>getStrength()){
-                std::cout << getSymbol() << " dies on: " << getX() << " " << getY() << std::endl;
-                world_ptr->deleteOrganism(this);
-            } else if(other->getStrength()<getStrength()){
-                std::cout << other->getSymbol() << " dies on: " << other->getX() << " " << other->getY() << std::endl;
-                world_ptr->deleteOrganism(other);
-            }
-        }else{
-            if (getSymbol() == 'A'){
-                this->movePosition();
-                std::cout << getSymbol() << " Ucieka " << std::endl;
-
-            } else{
-                other->movePosition();
-                std::cout << other->getSymbol() << " Ucieka " << std::endl;
-
-            }
-        }
-    }else{
         if(other->getStrength()>getStrength()){
-            std::cout << getSymbol() << " dies on: " << getX() << " " << getY() << std::endl;
             world_ptr->deleteOrganism(this);
         } else if(other->getStrength()<getStrength()){
-            std::cout << other->getSymbol() << " dies on: " << other->getX() << " " << other->getY() << std::endl;
             world_ptr->deleteOrganism(other);
         }
-    }
-
 }
+
+std::string Animal::toString() const {
+    return "";
+}
+
+bool Animal::run() {
+    return Organism::run();
+}
+
+
 
 

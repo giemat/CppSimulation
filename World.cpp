@@ -38,32 +38,20 @@ int World::getWidth(){
 void World::sort() {
     std::sort(organisms.begin(), organisms.end(),
               [](const Organism* a, const Organism* b) {
-                  return a->getInitiative() > b->getInitiative();
+                  return a->getInitiative() < b->getInitiative();
               });
 }
 
 void World::drawWorld() {
-//    clear();
-//    mvhline(0, 0, '*', Width);
-//    mvhline(Height - 1, 0, '*', Width);
-//    mvvline(0, 0, '*', Height);
-//    mvvline(0, Width - 1, '*', Height);
-//    for (Organism* org : organisms) {
-//        Point temp = org->getPosition();
-//        if (temp.getX() >= 0 && temp.getX() < Width && temp.getY() >= 0 && temp.getY() < Height) {
-//            mvaddch(temp.getY(), temp.getX(), org->getSymbol());
-//        }
-//    }
-//    refresh();
     system("clear");
+    std::cout << "Mateusz Giedroyc 197714" << std::endl;
     std::cout << "World Simulator tour number: " << getAge() << std::endl;
     std::cout << "+" << std::string(Width, '-') << "+" << std::endl;
 
-        // Draw middle rows
         for (int i = 0; i < Height; ++i) {
             std::cout << "|";
             for (int j = 0; j < Width; ++j) {
-                char symbol = ' ';  // Default symbol if no organism is present
+                char symbol = ' ';
                 for (Organism* org : organisms) {
                     Point temp = org->getPosition();
                     if (temp.getX() == j && temp.getY() == i) {
@@ -76,8 +64,10 @@ void World::drawWorld() {
             std::cout << "|" << std::endl;
         }
 
-        // Draw bottom border
         std::cout << "+" << std::string(Width, '-') << "+" << std::endl;
+
+    std::cout << "Info:" << std::endl;
+    printInfo();
     }
 
 
@@ -92,12 +82,22 @@ void World::addChild(Organism* organism) {
     sort();
 }
 
+Point World::randomPoint(){
+    srand(time(nullptr));
+    int randomX = rand() % Width;
+    int randomY = rand() % Height;
+    return Point(randomX, randomY);
+}
+
 void World::deleteOrganism(Organism* organism) {
+    std::string msg;
+    msg = organism->toString()+ " dies on: " + organism->getPosition().pointString();
     auto it = std::find(organisms.begin(), organisms.end(), organism);
     if (it != organisms.end()) {
         organisms.erase(it);
     }
     sort();
+    addInfo(msg);
 }
 
 int World::getAge(){
@@ -108,12 +108,9 @@ void World::checkCollisions() {
     for (size_t i = 0; i < organisms.size(); ++i) {
         for (size_t j = i + 1; j < organisms.size(); ++j) {
             if (organisms[i]->getPosition() == organisms[j]->getPosition()) {
-                std::cout << "Collision between:" << organisms[i]->getSymbol() << " and " << organisms[j]->getSymbol() << std::endl;
-                if(organisms[i]->getAge() >= organisms[j]->getAge()){
-                    std::cout << "collision at:" << organisms[i]->getPosition().getY() << " " << organisms[i]->getPosition().getX() << std::endl;
+                if(organisms[i]->getAge() > organisms[j]->getAge()){
                     organisms[i]->collision(organisms[j]);
                 }else{
-                    std::cout << "collision at: " << organisms[i]->getPosition().getY() << " " << organisms[i]->getPosition().getX() << std::endl;
                     organisms[j]->collision(organisms[i]);
                 }
             }
@@ -169,5 +166,23 @@ Organism *World::getOrg(int x, int y) {
     }
     return nullptr;
 }
+
+void World::printInfo() {
+    for (const auto& msg : information) {
+        std::cout << msg << std::endl;
+    }
+    information.clear();
+}
+
+void World::addInfo(const std::string& info) {
+    information.push_back(info);
+
+}
+
+bool World::isOrganism(Organism *organism) {
+    return std::find(organisms.begin(), organisms.end(), organism) != organisms.end();
+}
+
+
 
 

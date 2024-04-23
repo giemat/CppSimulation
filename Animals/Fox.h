@@ -14,6 +14,8 @@ public:
     void collision(Organism* organism);
     char getSymbol() const override;
     void reproduction(Organism *parent) override;
+    std::string toString() const override;
+
 };
 
 

@@ -19,7 +19,8 @@ public:
     void movePosition() override;
     virtual void reproduction(Organism* parent);
     void fight(Organism* parent);
-
+    std::string toString() const override;
     Point choosePosition();
+    bool run() override;
 };
 #endif //PO_P1_ANIMAL_H

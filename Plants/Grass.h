@@ -12,6 +12,7 @@ public:
     Grass( Point& point, World* _world_ptr);
     void action() override;
     char getSymbol() const override;
+    std::string toString() const override;
 };
 
 

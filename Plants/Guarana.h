@@ -12,6 +12,9 @@ public:
     Guarana(Point& point, World* _world_ptr);
     virtual void action() override;
     char getSymbol() const override;
+    std::string toString() const override;
+    void collision(Organism *organism) override;
+
 };
 
 #endif //PO_P1_GUARANA_H

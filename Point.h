@@ -18,6 +18,8 @@ public:
     int getY() const;
     Point& operator=(const Point& other) = default;
     bool operator==(const Point& other) const;
+
+    std::string pointString();
 };
 
 

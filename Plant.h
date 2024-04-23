@@ -13,6 +13,7 @@ public:
     void action() override;
     void collision(Organism* organism) override;
     char getSymbol() const override;
+    std::string toString() const override;
 };
 
 #endif //PO_P1_PLANT_H
