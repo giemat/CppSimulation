@@ -10,7 +10,7 @@ class Point {
     int x;
     int y;
 public:
-    Point() = 0;
+    Point() = default;
     Point(int x, int y);
     ~Point() = default;
     void setX(int x);
@@ -21,6 +21,7 @@ public:
     bool operator==(const Point& other) const;
 
     std::string pointString();
+
 };
 
 

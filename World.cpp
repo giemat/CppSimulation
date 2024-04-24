@@ -24,7 +24,7 @@
 
 World::World(int Height, int Width) : Height(Height), Width(Width), worldAge(0) {
     setDimensions();
-    initWorld();
+    //initWorld();
 }
 
 World::World(int Height, int Width, std::vector<Organism*>&& organism) : Height(Height), Width(Width), organisms(std::move(organism)), worldAge(0) {}
@@ -60,6 +60,7 @@ void World::sort() {
 void World::drawWorld() {
     system("clear");
     std::cout << "Mateusz Giedroyc 197714" << std::endl;
+    std::cout << "Move w-up, s-down, a-left, d-right, u-Special Ability , q-quit" << std::endl;
     std::cout << "World Simulator tour number: " << getAge() << std::endl;
     std::cout << "+" << std::string(Width, '-') << "+" << std::endl;
 
@@ -80,6 +81,7 @@ void World::drawWorld() {
         }
 
         std::cout << "+" << std::string(Width, '-') << "+" << std::endl;
+
 
     std::cout << "Info:" << std::endl;
     printInfo();
@@ -136,6 +138,7 @@ void World::checkCollisions() {
 
 World::~World() {
     //endwin();
+    system("clear");
     organisms.clear();
 }
 
@@ -150,7 +153,8 @@ void World::setDimensions() {
 //    scanw("%d", &Width);
 
     std::cout << "Set Height and width of the world" << std::endl;
-    std::cin >> Height >> Width;
+    std::cin >> Height;
+    std::cin >> Width;
 }
 
 bool World::empty(Point point) {
@@ -211,24 +215,17 @@ bool World::isOrganism(Organism *organism) {
 }
 
 void World::initWorld() {
-    Point mid[20];
-    for(int i = 0; i<20; i++){
-        srand(time(nullptr));
-        int x = rand()%Width;
-        int y = rand()%Height;
-        Point temp(x,y);
-        mid[i] = temp;
-    }
-    Wolf* sheep = new Wolf(mid[0], this);
-    Wolf* wolf = new Wolf(mid[1], this);
-    Fox* fox = new Fox(mid[2], this);
-    Antelope* antelope = new Antelope(mid[3], this);
-    Turtle* turtle = new Turtle(mid[4], this);
-    Nightshade* nightshade = new Nightshade(mid[5], this);
-    Milkweed* milkweed = new Milkweed(mid[6], this);
-    Grass* grass = new Grass(mid[7], this);
-    Guarana *guarana = new Guarana(mid[8], this);
-    HeracleumSosnowskyi* heracleumSosnowskyi = new HeracleumSosnowskyi(mid[9], this);
+    Point temp(3,4), temp1(Width-3,Height-4), temp2(10,10),temp3(Width-10,Height-10), temp4(15,15),temp5(Width-15,Height-15), temp6(2,Height-2), temp7(Width-2,Height-10), temp8(2,10),temp9(Height-2,Height-10);
+    auto* sheep = new Wolf(temp, this);
+    auto* wolf = new Wolf(temp1, this);
+    auto* fox = new Fox(temp2, this);
+    auto* antelope = new Antelope(temp3, this);
+    auto* turtle = new Turtle(temp4, this);
+    auto* nightshade = new Nightshade(temp5, this);
+    auto* milkweed = new Milkweed(temp6, this);
+    auto* grass = new Grass(temp7, this);
+    auto *guarana = new Guarana(temp8, this);
+    auto* heracleumSosnowskyi = new HeracleumSosnowskyi(temp9, this);
     addOrganism(grass);
     addOrganism(guarana);
     addOrganism(heracleumSosnowskyi);

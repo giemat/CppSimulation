@@ -32,3 +32,5 @@ std::string Point::pointString(){
     msg = "X: "+std::to_string(getX())+", Y: "+std::to_string(getY());
     return msg;
 }
+
+
