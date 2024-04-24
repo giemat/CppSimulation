@@ -34,6 +34,9 @@ void Human::action() {
         case 'u':
             specialAbility();
             break;
+        case 'q':
+            world_ptr->deleteOrganism(this);
+            break;
         default:
             world_ptr->addInfo("Wrong input");
             break;

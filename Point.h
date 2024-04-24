@@ -10,6 +10,7 @@ class Point {
     int x;
     int y;
 public:
+    Point() = 0;
     Point(int x, int y);
     ~Point() = default;
     void setX(int x);

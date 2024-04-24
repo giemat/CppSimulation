@@ -10,7 +10,7 @@ void Milkweed::action() {
     srand(time(nullptr));
 
     for (int i = 0; i < 3 ; i++){
-        int chance = (rand()+i)%100;
+        int chance = (rand()+i)%300;
         Point temp(position);
         while(world_ptr->empty(temp)){
             int prob = rand()%4;

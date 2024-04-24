@@ -3,6 +3,20 @@
 //
 
 #include "World.h"
+#include "Human.h"
+#include "Organism.h"
+#include "World.h"
+#include "Animals/Wolf.h"
+#include "Animals/Sheep.h"
+#include "Animals/Antelope.h"
+#include "Animals/Turtle.h"
+#include "Animals/Fox.h"
+#include "Plants/Grass.h"
+#include "Plants/Guarana.h"
+#include "Plants/Heracleumsosnowskyi.h"
+#include "Plants/Milkweed.h"
+#include "Plants/Nightshade.h"
+#include "Human.h"
 #include <algorithm>
 #include <iostream>
 
@@ -10,6 +24,7 @@
 
 World::World(int Height, int Width) : Height(Height), Width(Width), worldAge(0) {
     setDimensions();
+    initWorld();
 }
 
 World::World(int Height, int Width, std::vector<Organism*>&& organism) : Height(Height), Width(Width), organisms(std::move(organism)), worldAge(0) {}
@@ -134,7 +149,7 @@ void World::setDimensions() {
 //    refresh();
 //    scanw("%d", &Width);
 
-    std::cout << "Height and width" << std::endl;
+    std::cout << "Set Height and width of the world" << std::endl;
     std::cin >> Height >> Width;
 }
 
@@ -144,6 +159,7 @@ bool World::empty(Point point) {
             return false;
         }else{ continue;}
     }
+
     return true;
 }
 
@@ -154,12 +170,23 @@ bool World::empty(int x, int y) {
             return false;
         }else{ continue;}
     }
+
     return true;
 }
 
 Organism *World::getOrg(int x, int y) {
     Point temp(x,y);
     for(Organism* org : organisms){
+        if(org->getPosition() == temp){
+            return org;
+        }else{ continue;}
+    }
+    return nullptr;
+}
+
+Organism *World::getChild(int x, int y) {
+    Point temp(x,y);
+    for(Organism* org : children){
         if(org->getPosition() == temp){
             return org;
         }else{ continue;}
@@ -181,6 +208,38 @@ void World::addInfo(const std::string& info) {
 
 bool World::isOrganism(Organism *organism) {
     return std::find(organisms.begin(), organisms.end(), organism) != organisms.end();
+}
+
+void World::initWorld() {
+    Point mid[20];
+    for(int i = 0; i<20; i++){
+        srand(time(nullptr));
+        int x = rand()%Width;
+        int y = rand()%Height;
+        Point temp(x,y);
+        mid[i] = temp;
+    }
+    Wolf* sheep = new Wolf(mid[0], this);
+    Wolf* wolf = new Wolf(mid[1], this);
+    Fox* fox = new Fox(mid[2], this);
+    Antelope* antelope = new Antelope(mid[3], this);
+    Turtle* turtle = new Turtle(mid[4], this);
+    Nightshade* nightshade = new Nightshade(mid[5], this);
+    Milkweed* milkweed = new Milkweed(mid[6], this);
+    Grass* grass = new Grass(mid[7], this);
+    Guarana *guarana = new Guarana(mid[8], this);
+    HeracleumSosnowskyi* heracleumSosnowskyi = new HeracleumSosnowskyi(mid[9], this);
+    addOrganism(grass);
+    addOrganism(guarana);
+    addOrganism(heracleumSosnowskyi);
+    addOrganism(milkweed);
+    addOrganism(nightshade);
+    addOrganism(turtle);
+    addOrganism(wolf);
+    addOrganism(sheep);
+    addOrganism(antelope);
+    addOrganism(fox);
+
 }
 
 

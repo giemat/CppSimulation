@@ -22,8 +22,9 @@ void HeracleumSosnowskyi::action() {
         org = world_ptr->getOrg(getX()-1, getY());
         world_ptr->deleteOrganism(org);
     }
+
     srand(time(nullptr));
-    int chance = rand()%100;
+    int chance = rand()%300;
     Point temp(position);
     int prob = rand()%4;
     switch (prob) {

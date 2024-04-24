@@ -44,6 +44,10 @@ public:
     void printInfo();
     void addInfo(const std::string& info);
     Point randomPoint();
+
+    Organism *getChild(int x, int y);
+
+    void initWorld();
 };
 
 

@@ -13,7 +13,7 @@ char Grass::getSymbol() const {
 
 void Grass::action() {
     srand(time(nullptr));
-    int chance = rand()%100;
+    int chance = rand()%300;
     Point temp(position);
     while(world_ptr->empty(temp)){
         int prob = rand()%4;
